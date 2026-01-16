@@ -1,0 +1,11 @@
+return {
+  'GCBallesteros/jupytext.nvim',
+  version = '0.2.0',
+  config = true,
+  lazy = false,
+  opts = {
+    style = 'markdown',
+    output_extension = 'md', -- Default extension. Don't change unless you know what you are doing
+    force_ft = 'markdown', -- Default filetype. Don't change unless you know what you are doing
+  },
+}
