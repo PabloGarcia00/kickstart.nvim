@@ -69,7 +69,7 @@ vim.api.nvim_create_user_command(
 )
 
 vim.api.nvim_create_user_command('TelescopePhrases', function(opts)
-  local ts_utils = require 'utils.telescope'
+  local ts_utils = require 'custom.utils.telescope'
   ts_utils.search_lines_in_file(opts.args)
 end, {
   nargs = 1,
@@ -86,3 +86,19 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.softtabstop = 4 -- Number of spaces a tab counts for while editing
   end,
 })
+
+-- Data science file formats (YAML, JSON, TOML, etc.)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'yaml', 'json', 'toml', 'markdown' },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+    vim.opt_local.softtabstop = 2
+  end,
+})
+
+-- Format command
+vim.api.nvim_create_user_command('Format', function()
+  require('conform').format { async = true, lsp_format = 'fallback' }
+end, { desc = 'Format the current buffer using conform.nvim' })

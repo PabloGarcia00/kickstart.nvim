@@ -19,7 +19,7 @@ return {
           -- plugin directory, but it's safer to ensure the require)
           format = require('iron.fts.common').bracketed_paste_python,
           block_dividers = { '# %%', '#%%' },
-          env = { PYTHON_BASIC_REPL = '1' }, -- needed for python3.13 and up.
+          env = { PYTHON_BASIC_REPL = '1', MPLBACKEND = 'module://matplotlib-backend-kitty' }, -- needed for python3.13 and up.
         },
         lua = {
           command = { 'lua' },
